@@ -149,8 +149,9 @@ var VitaThemes = {
             var search = encodeURIComponent($("#search").val()),
                 sort = $("select#sort").val(),
                 t = $("select#t").val(),
+                scope = "sort="+sort+"&t="+t,
                 pagination = "after=" + (VitaThemes.config.page.after || "") + "&limit=" + VitaThemes.config.page.size,
-                out = (search.length > 0) ? "search.json?restrict_sr=on&sort="+sort+"&t="+t+"&"+pagination+"&q="+search : ".json?"+pagination;
+                out = (search.length > 0) ? "search.json?restrict_sr=on&"+scope+"&"+pagination+"&q="+search : ".json?"+scope+"&"+pagination;
 
             $.getJSON("https://www.reddit.com/r/vitathemes/"+out, function(data) {
                 var after = data.data.after,
