@@ -36,6 +36,7 @@
 .item img.preview {
     max-width:100%;
     min-width:100%;
+    min-height:134px;
     max-height:134px;
 }
 

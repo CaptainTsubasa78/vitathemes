@@ -136,7 +136,7 @@ var VitaThemes = {
                 fa_global = 'fa fa-fw ';
 
 
-            $("<i />", {class:fa_global+'fa-download'}).appendTo(quicklinks);
+            //$("<i />", {class:fa_global+'fa-download'}).appendTo(quicklinks);
             $("<a />", {href: info.url, target: '_blank'}).append($("<i />", {class:fa_global+'fa-reddit'})).appendTo(quicklinks);
 
             //Stats
