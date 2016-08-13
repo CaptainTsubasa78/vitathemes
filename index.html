@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Vita Themes</title>
+        <link rel="SHORTCUT ICON" href="favicon.png">
+
+        <!-- General -->
+        <meta name="description" content="The technology is here.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="bootstrap-3.3.2-dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="font-awesome-4.2.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="bootstrap.css" />
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.11.2.custom/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/site.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Vita Themes</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <div class="navbar-form navbar-right">
+                <div class="form-group">
+                    <select id='t' class='form-control'>
+                          <option value="hour">Hour</option>
+                          <option value="day">Day</option>
+                          <option value="week" selected>Week</option>
+                          <option value="month">Month</option>
+                          <option value="year">Year</option>
+                          <option value="all">All Time</option>
+                    </select>
+                    <select id='sort'  class='form-control'>
+                          <option value="relevance">Relevance</option>
+                          <option value="new">New</option>
+                          <option value="top">Top</option>
+                          <option value="comments">Comments</option>
+                    </select>
+                  <input placeholder="Search" class="form-control" type="text" id="search">
+                </div>
+                <div class="btn btn-success" id="run_search">Execute</div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="container" id='content'>
+            <!-- Pagination controls -->
+            <div class="row">
+                <div class="col-sm-12">
+                    Pagination controls
+                </div>
+            </div>
+            <div class="row" id="items"></div>
+        </div>
+    </body>
+</html>
