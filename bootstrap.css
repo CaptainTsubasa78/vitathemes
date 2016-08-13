@@ -1,5 +1,5 @@
 #content {
-    margin-top:50px;
+    margin-top:55px;
     text-align:center;
 }
 
@@ -24,12 +24,19 @@
 .item .name {
     font-weight: bold;
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.item .name:hover {
+    text-overflow: initial;
+    white-space: initial;
 }
 
 .item img.preview {
     max-width:100%;
     min-width:100%;
-    max-height:141px;
+    max-height:134px;
 }
 
 .item .quicklinks {
