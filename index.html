@@ -33,26 +33,31 @@
               <a class="navbar-brand" href="https://repod.github.io/vitathemes/">Vita Themes</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-              <div class="navbar-form navbar-right">
-                <div class="form-group">
-                    <select id='t' class='form-control' title='Time range to search.'>
-                          <option value="hour">Hour</option>
-                          <option value="day">Day</option>
-                          <option value="week" selected>Week</option>
-                          <option value="month">Month</option>
-                          <option value="year">Year</option>
-                          <option value="all">All Time</option>
-                    </select>
-                    <select id='sort' class='form-control' title='Sort priority.'>
-                          <option value="relevance">Relevance</option>
-                          <option value="new">New</option>
-                          <option value="top">Top</option>
-                          <option value="comments">Comments</option>
-                    </select>
-                  <input placeholder="Search" class="form-control" type="text" id="search" title="Supports Reddit advanced search syntax.">
+                <div class="navbar-left navbar-brand">
+                <a href='//www.reddit.com/message/compose?to=RePod37&subject=VitaThemes' title='Contact'><i class='fa fa-fw fa-envelope'></i></a>
+                <a href='//github.com/repod/vitathemes' title='VitaThemes @ Github'><i class='fa fa-fw fa-code-fork'></i></a>
+                <a href='//reddit.com/r/vitathemes' title='r/vitathemes'><i class='fa fa-fw fa-reddit'></i></a>
                 </div>
+                <div class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <select id='t' class='form-control' title='Time range to search.'>
+                              <option value="hour">Hour</option>
+                              <option value="day">Day</option>
+                              <option value="week" selected>Week</option>
+                              <option value="month">Month</option>
+                              <option value="year">Year</option>
+                              <option value="all">All Time</option>
+                        </select>
+                        <select id='sort' class='form-control' title='Sort priority.'>
+                              <option value="relevance">Relevance</option>
+                              <option value="new">New</option>
+                              <option value="top">Top</option>
+                              <option value="comments">Comments</option>
+                        </select>
+                      <input placeholder="Search" class="form-control" type="text" id="search" title="Supports Reddit advanced search syntax.">
+                    </div>
                 <div class="btn btn-success" id="run_search">Execute</div>
-              </div>
+                </div>
             </div>
           </div>
         </nav>

@@ -70,6 +70,7 @@ var VitaThemes = {
     },
     search: function() {
         //Empty cache, clear page, reset pagination.
+        this.config.page.running = true;
         this.cache = [];
         $('#items').html("");
         this.config.page.after = "";
@@ -78,7 +79,7 @@ var VitaThemes = {
     },
     run: function(empty) {
         var that = this,
-            start = $(".item").last().index() + 1;
+            start = ($(".item") && $(".item").last().index() + 1 || 0);
 
         $.each(this.cache.slice(start), function(index, value) {
             $('#items').append(that.generate.item(value));
@@ -193,7 +194,7 @@ var VitaThemes = {
             if (info.downloadUrl !== false) {
                 $("<a />", {href: info.downloadUrl, target: '_blank'}).append($("<i />", {class:fa_global+'fa-download'})).appendTo(quicklinks);
             }
-            $("<a />", {href: info.url, target: '_blank'}).append($("<i />", {class:fa_global+'fa-reddit'})).appendTo(quicklinks);
+            $("<a />", {href: info.url, target: '_blank'}).append($("<i />", {class:fa_global+'fa-comments'})).appendTo(quicklinks);
 
             //Stats
             var icon = $("<i />", {class:fa_global+'fa-bar-chart'})[0].outerHTML,
