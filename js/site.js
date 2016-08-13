@@ -48,8 +48,14 @@ var VitaThemes = {
             e.preventDefault();
             that.search();
         });
+
         $("#search").keyup(function(e){
             if(e.keyCode == 13) { that.search(); }
+        });
+        
+        $(document).on('click', '.author', function() {
+            $("#search").val("author:"+$(this).text());
+            that.search();
         });
 
         //Scrolling
@@ -190,10 +196,15 @@ var VitaThemes = {
             $("<a />", {href: info.url, target: '_blank'}).append($("<i />", {class:fa_global+'fa-reddit'})).appendTo(quicklinks);
 
             //Stats
-            var icon = $("<i />", {class:fa_global+'fa-arrow-up'})[0].outerHTML,
-                up = $("<span />", {class: 'up boats', text: +info.stats.votes.up})[0].outerHTML,
-                down = $("<span />", {class: 'down boats', text: info.stats.votes.down})[0].outerHTML   ;
-            $("<div />", {class: 'stats', html: icon + up + " / " + down}).appendTo(quicklinks);
+            var icon = $("<i />", {class:fa_global+'fa-bar-chart'})[0].outerHTML,
+                icon_comment = $("<span />", {class: fa_global+'fa-comment'})[0].outerHTML,
+                icon_author = $("<span />", {class: fa_global+'fa-pencil'})[0].outerHTML,
+                up = $("<span />", {class: 'up boats', title: 'Upvotes', text: +info.stats.votes.up})[0].outerHTML,
+                down = $("<span />", {class: 'down boats', title: 'Downvotes', text: info.stats.votes.down})[0].outerHTML,
+                comments = $("<span />", {class: 'comments', title: 'Comments', html: info.stats.comments})[0].outerHTML,
+                author = $("<span />", {class: 'author', title: 'Search by author', html: icon_author + info.author})[0].outerHTML;
+
+            $("<div />", {class: 'stats', html: icon + " " + up + " / " + down + " / " + comments + "<br>" + author}).appendTo(quicklinks);
 
             return quicklinks;
         }

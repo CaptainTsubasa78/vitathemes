@@ -35,7 +35,7 @@
             <div id="navbar" class="navbar-collapse collapse">
               <div class="navbar-form navbar-right">
                 <div class="form-group">
-                    <select id='t' class='form-control'>
+                    <select id='t' class='form-control' title='Time range to search.'>
                           <option value="hour">Hour</option>
                           <option value="day">Day</option>
                           <option value="week" selected>Week</option>
@@ -43,13 +43,13 @@
                           <option value="year">Year</option>
                           <option value="all">All Time</option>
                     </select>
-                    <select id='sort'  class='form-control'>
+                    <select id='sort' class='form-control' title='Sort priority.'>
                           <option value="relevance">Relevance</option>
                           <option value="new">New</option>
                           <option value="top">Top</option>
                           <option value="comments">Comments</option>
                     </select>
-                  <input placeholder="Search" class="form-control" type="text" id="search">
+                  <input placeholder="Search" class="form-control" type="text" id="search" title="Supports Reddit advanced search syntax.">
                 </div>
                 <div class="btn btn-success" id="run_search">Execute</div>
               </div>
