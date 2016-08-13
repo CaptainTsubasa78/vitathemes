@@ -43,12 +43,18 @@ var VitaThemes = {
     bind: function() {
         var that = this;
 
+        //Searching
         $("#run_search").click(function(e) {
             e.preventDefault();
             that.search();
         });
+        $("#search").keyup(function(e){
+            if(e.keyCode == 13) { that.search(); }
+        });
 
+        //Scrolling
         $(window).scroll(function() {
+           //Eventually add thumbnail lazy loading.
            if(that.config.page.running == false && $(window).scrollTop() + $(window).height() >= $(document).height() - that.config.page.buffer) {
                console.log('bottom');
                that.config.page.running = true; //Prevent spamming.
