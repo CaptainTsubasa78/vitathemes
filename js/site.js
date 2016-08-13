@@ -1,3 +1,23 @@
+/*
+    While I'm not trying to enforce how creators present their themes in self posts,
+    I will require consistency for my own sanity.
+
+    For self-posts to pass the checks, they will require the following syntax:
+    [Download](direct link to download file or page)
+        Example: [Preview](http://download.site/theme.zip)
+        If this is not available, no quick download link will be provided.
+    [Preview](direct link to desired preview image)
+        Example: [Preview](http://imgur.com/myimage.jpg)
+        If this is not provided, Reddit's fallback will be used if available otherwise the post will be skipped.
+        URLs are not verified for being available, thus non-existant images will be displayed accordingly.
+
+        For security, the only allowed image domain is Imgur.
+        Imgur album support for the first image may eventually be implemented, but it is not currently.
+    None of these are case-sensitive.
+
+
+*/
+
 var VitaThemes = {
     cache: [],
     config: {
@@ -27,7 +47,7 @@ var VitaThemes = {
             e.preventDefault();
             that.search();
         });
-        
+
         $(window).scroll(function() {
            if(that.config.page.running == false && $(window).scrollTop() + $(window).height() >= $(document).height() - that.config.page.buffer) {
                console.log('bottom');
@@ -56,14 +76,36 @@ var VitaThemes = {
         parse: function(info) {
             //Determine if we can get the info we need
 
-            /* info.self, info.is_self */
-            if (!info.preview) return false; //For now. Eventually add enhanced support for text posts.
+            //info.self, info.is_self
+            /*  Attempt to detect the link to the preview image in the selftext, otherwise attempt to use Reddit's fallback.
+                Currently doesn't care about what's at the other end of the URL. The policing should be done via the subreddit.
+            */
+
+            var preview;
+            
+            //Check if the provided preview link is imgur.
+            if (info.selftext && /\[preview\]\((.+?)\)/im.test(info.selftext)) {
+                var imgur = /^(?:https?:\/\/)?(?:(?:i|www)\.)?imgur\.com\/([a-z0-9]{3,})/i, //Overkill.
+                    temp = info.selftext.match(/\[preview\]\((.+?)\)/im).pop();
+                
+                //If imgur, sanitize the URL and proceed. Otherwise set to false.
+                preview = (imgur.test(temp)) ? temp.replace(/https?:/, "") : false;
+            };
+            if (!preview) { preview = (info.preview && info.preview.images[0].source.url || false); }
+
+            if (!preview) {
+                console.log('No preview.', info); //Log problematic items.
+                return false;
+            }
+
+            var download = (info.selftext && /\[download\]\((.+?)\)/im.test(info.selftext)) ? info.selftext.match(/\[download\]\((.+?)\)/im).pop() : false;
 
             var info = {
                 'name': info.title.replace(/\[(Theme|Release)\]/ig, ""),
                 'author': info.author,
-                'previewUrl': (info.preview && info.preview.images[0].source.url || ''),
                 'url': info.url,
+                'downloadUrl': download,
+                'previewUrl': preview,
                 'stats': {
                     'comments': info.num_comments,
                     'votes': {
@@ -83,7 +125,7 @@ var VitaThemes = {
         },
         reddit: function(callback) {
             var that = this;
-            
+
             if (VitaThemes.config.page.after == null) { //If this is null, we've hit the end of the results.
                 VitaThemes.config.page.running = false;
                 (callback || VitaThemes.run());
@@ -136,7 +178,9 @@ var VitaThemes = {
                 fa_global = 'fa fa-fw ';
 
 
-            //$("<i />", {class:fa_global+'fa-download'}).appendTo(quicklinks);
+            if (info.downloadUrl !== false) {
+                $("<a />", {href: info.downloadUrl, target: '_blank'}).append($("<i />", {class:fa_global+'fa-download'})).appendTo(quicklinks);
+            }
             $("<a />", {href: info.url, target: '_blank'}).append($("<i />", {class:fa_global+'fa-reddit'})).appendTo(quicklinks);
 
             //Stats
