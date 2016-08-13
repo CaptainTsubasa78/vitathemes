@@ -98,7 +98,7 @@ var VitaThemes = {
             
             //Check if the provided preview link is imgur.
             if (info.selftext && /\[preview\]\((.+?)\)/im.test(info.selftext)) {
-                var imgur = /^(?:https?:\/\/)?(?:(?:i|www)\.)?imgur\.com\/([a-z0-9]{3,})/i, //Overkill.
+                var imgur = /^(?:https?:\/\/)?(?:(?:i|www)\.)?imgur\.com\/(?!gallery)([a-z0-9]{3,})/i, //Overkill.
                     temp = info.selftext.match(/\[preview\]\((.+?)\)/im).pop();
                 
                 //If imgur, sanitize the URL and proceed. Otherwise set to false.
