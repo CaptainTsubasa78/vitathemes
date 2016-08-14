@@ -31,7 +31,7 @@ These are not case-sensitive and can be placed anywhere in the post.
 
 While I have no say in what is allowed on the subreddit, it should go without saying (but just in case), this site also respects icon packs. Basically any post that meets the above criteria and is posted to the subreddit will appear on the site.
 
-Based on the evolution of the subreddit and feedback, support for either different subreddits or multireddits may be added.
+For instructions on how to use your own subreddit or multiple at once, see the [Custom subreddits](#custom-subreddits) section below.
 
 ##Removing your themes
 At the time of writing, there's no way to selectively remove themes without deleting the post or intentionally failing the parser check (by not having a preview image).
