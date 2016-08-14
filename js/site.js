@@ -31,7 +31,7 @@ var VitaThemes = {
     },
     saveConfig: function(time, sort, search) {
         //Store search options in URL hash. Array and join?
-        window.location.hash = (time && sort && search) ? [VitaThemes.config.target, time, sort, search].join("/") : '';
+        window.location.hash = (time && sort && search) ? [VitaThemes.config.target, time, sort, search].join("/") : (this.config.target !== 'r/vitathemes') ? this.config.target : '';
     },
     loadConfig: function() {
         //Load initial search options based on URL hash. Currently unoptimized and prone to huge failure!
@@ -40,6 +40,7 @@ var VitaThemes = {
         if (temp.length < 2) return false;
 
         this.config.target = "r/"+temp[1]; //Life is simply unfair.
+        $("#subreddit_link").attr({title: this.config.target, href: '//reddit.com/'+this.config.target});
         if (temp[2]) $("select#t").find("[value^="+temp[2]+"]").attr("selected", "selected");
         if (temp[3]) $("select#sort").find("[value^="+temp[3]+"]").attr("selected", "selected");
         if (temp[4]) $("#search").val(decodeURIComponent(temp[4]));
