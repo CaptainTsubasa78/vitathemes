@@ -39,7 +39,7 @@ var VitaThemes = {
 
         if (temp.length !== 5) return false;
 
-        this.config.target = temp[1];
+        this.config.target = "r/"+temp[1]; //Life is simply unfair.
         $("select#t").find("[value^="+temp[2]+"]").attr("selected", "selected");
         $("select#sort").find("[value^="+temp[3]+"]").attr("selected", "selected");
         $("#search").val(decodeURIComponent(temp[4]));
