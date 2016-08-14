@@ -1,5 +1,5 @@
-VitaThemes
----
+##[VitaThemes](//repod.github.io/vitathemes)
+
 This is a front-end driven website powered by the Reddit API and the [vitathemes subreddit](//reddit.com/r/vitathemes) as the backend.
 
 ##Adding your themes
@@ -13,7 +13,7 @@ To ensure compatability with self/text posts please include the following syntax
   - If you do not provide this, the site will attempt to use the Reddit API's fallback thumbnail.
   - If there is no API fallback thumbnail, the site will ignore your post.
 
-These are not case-sensitive and can be placed anywhere in the post.
+These are not case-sensitive and can be placed anywhere in the post.    
 *However*, the built-in parser will only use the *last* occurance of each.
 
 ##Removing your themes
