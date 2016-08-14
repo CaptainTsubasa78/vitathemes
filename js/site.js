@@ -51,7 +51,7 @@ var VitaThemes = {
 
         this.loadConfig();
         this.bind();
-        
+
         this.doScroll();
     },
     bind: function() {
@@ -83,15 +83,13 @@ var VitaThemes = {
             console.log("bottom / scrollin' scrollin' scrollin'");
             this.config.page.running = true; //Prevent spamming.
             this.fetch.reddit(false, true); //Do thing. No callback (false), noSave (true).
-            $("#infinite_scroll #pending").show();
-            $("#infinite_scroll #chickens").hide();
         }
     },
     canScroll: function() {
         var buffer = $(document).height() - this.config.page.buffer
             bar = $("#infinite_scroll").offset().top,
             max = $(window).scrollTop() + $(window).height();
-            
+
         return (!this.config.page.running && (bar <= max) /*|| (max >= buffer)*/);
     },
     search: function() {
@@ -110,7 +108,7 @@ var VitaThemes = {
         $.each(this.cache.slice(start), function(index, value) {
             $('#items').append(that.generate.item(value));
         });
-        
+
         this.doScroll();
     },
     fetch: {
@@ -180,6 +178,9 @@ var VitaThemes = {
                 (callback || VitaThemes.run());
                 return false;
             }
+
+            $("#infinite_scroll #pending").show();
+            $("#infinite_scroll #chickens").hide();
 
             //Obtain search box for options
             var search = encodeURIComponent($("#search").val()),
