@@ -42,7 +42,7 @@ var VitaThemes = {
         this.config.target = temp[1];
         $("select#t").find("[value^="+temp[2]+"]").attr("selected", "selected");
         $("select#sort").find("[value^="+temp[3]+"]").attr("selected", "selected");
-        $("#search").val(temp[4]);
+        $("#search").val(decodeURIComponent(temp[4]));
     },
     init: function() {
         console.log("init called, it's a miracle");
