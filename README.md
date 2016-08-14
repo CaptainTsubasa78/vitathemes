@@ -53,8 +53,8 @@ Example:
   - Changed to a multi: `r/vitathemes+myvitathemes`, note the `+`. The entire site will now use both subreddits.
 
 ##Site moderation and legal matters
-None of the content shown on the site is actually *hosted* on the site (or GitHub, to the extent of this project).
+None of the content obtained from the API shown on the site is actually *hosted* on the site (or GitHub, to the extent of this project). The Reddit API is accessed purely client-side, so any problematic material resulting from it is by the client's own request (including the default settings, therefore request) and they are responsible for it.
 
-There is **no** direct moderation of the site. Any moderation, copyright/trademark, or relevant concerns related to the content should be forwarded to the [vitathemes subreddit moderators](https://www.reddit.com/message/compose?to=%2Fr%2Fvitathemes).
+There is **no** direct moderation of the site. Any moderation, copyright/trademark, or relevant concerns related to the content should be forwarded to the appropriate subreddit moderators or [Reddit administration directly](//www.reddit.com/contact/).
 
 This site is not sponsored, endorsed, or affiliated with/by Reddit.
