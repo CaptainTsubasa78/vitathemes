@@ -21,7 +21,6 @@
 var VitaThemes = {
     cache: [],
     config: {
-        'blah': false,
         'page': {
             running: false, //Probably bad way to do this. Tracking if we're currently processing the page load.
             buffer: 150,    //Amount of pixels within range of the bottom of the screen to load the next page.
@@ -30,13 +29,7 @@ var VitaThemes = {
         }
     },
     init: function() {
-        console.log('hi');
-
-        info = {
-            'name': 'P4 Is Fun',
-            'previewUrl': 'testing/p3m2.jpg'
-        }
-
+        console.log("init called, it's a miracle");
         this.bind();
         this.fetch.reddit();
     },
@@ -157,7 +150,7 @@ var VitaThemes = {
             $.getJSON("https://www.reddit.com/r/vitathemes/"+out, function(data) {
                 var after = data.data.after,
                     before = data.data.before;
-                console.log(after, before, data);
+                //console.log(after, before, data);
 
                 $.each(data.data.children, function(index, content) {
                     that.process(content.data);
@@ -172,10 +165,7 @@ var VitaThemes = {
     },
     generate: {
         item: function(info) {
-            /*
-                info.name, info.url, info.votes?, img.preview, etc.
-
-            */
+            //info.name, info.url, info.votes?, img.preview, etc.
             var item = $("<div />", {class: 'item'});
 
             //Populate
@@ -218,6 +208,4 @@ var VitaThemes = {
     }
 }
 
-$(document).ready(function() {
-    VitaThemes.init()
-});
+$(document).ready(function() { VitaThemes.init() });
