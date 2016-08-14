@@ -45,9 +45,11 @@ One of the options stored is the subreddit. Changing this to point where desired
 
 Example:
  - `https://repod.github.io/vitathemes/#!r/vitathemes/all/top/cool`
- - `https://repod.github.io/vitathemes/#!r/myvitathemes/all/top/cool`
+ - `https://repod.github.io/vitathemes/#!r/myvitathemes`
+  - This uses short-hand to only supply the subreddit, the rest of the URL is not needed except for the actual search.
   - Changed from `r/vitathemes` to `r/myvitathemes`, the entire site will now use `r/myvitathemes`.
- - `https://repod.github.io/vitathemes/#!r/vitathemes+myvitathemes/all/top/cool`
+ - `https://repod.github.io/vitathemes/#!r/vitathemes+myvitathemes`
+  - This uses short-hand to only supply the subreddit, the rest of the URL is not needed except for the actual search.
   - Changed to a multi: `r/vitathemes+myvitathemes`, note the `+`. The entire site will now use both subreddits.
 
 ##Site moderation and legal matters
