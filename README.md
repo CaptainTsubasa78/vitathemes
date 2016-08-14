@@ -7,7 +7,7 @@ This is a front-end driven website powered by the Reddit API and the [vitathemes
  - NSFW support (if/when used on the subreddit)
  - Mobile friendly
  - Full support of Reddit search, including advanced syntax
- - Ability to use custom subreddit or multireddits (r/sub1+sub2+...) (see below for details)
+ - Ability to use custom subreddits or multireddits (r/sub1+sub2+...) (see [Custom subreddits](#custom-subreddits) section)
  - No donations for server funding
    - The website is (thankfully) hosted by GitHub.
    - The file hosting is up to to the post author.
