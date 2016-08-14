@@ -39,6 +39,9 @@
     min-height:134px;
     max-height:134px;
 }
+/* NSFW images */
+.item img.preview.nsfw { filter: blur(4px); }
+.item img.preview.nsfw:hover { filter: unset; }
 
 .item .quicklinks {
     text-align:right;

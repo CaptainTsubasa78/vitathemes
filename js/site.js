@@ -119,6 +119,7 @@ var VitaThemes = {
                 'url': info.url,
                 'downloadUrl': download,
                 'previewUrl': preview,
+                'nsfw': info.over_18,
                 'stats': {
                     'comments': info.num_comments,
                     'votes': {
@@ -178,7 +179,7 @@ var VitaThemes = {
             var item = $("<div />", {class: 'item'});
 
             //Populate
-            $("<img />", {class: 'preview', src: info.previewUrl}).appendTo(item); //Append the preview image.
+            $("<img />", {class: 'preview ' + ((info.nsfw)?'nsfw':''), src: info.previewUrl}).appendTo(item); //Append the preview image.
             $("<div />", {class: 'name', text: info.name}).appendTo(item); //Append the name.
             this.quicklinks(info).appendTo(item); //Append quicklinks.
 
