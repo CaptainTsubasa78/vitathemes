@@ -7,6 +7,12 @@ This is a front-end driven website powered by the Reddit API and the [vitathemes
  - NSFW support (if/when used on the subreddit)
  - Mobile friendly
  - Full support of Reddit search, including advanced syntax
+ - No donations for server funding
+   - The website is (thankfully) hosted by GitHub.
+   - The file hosting is up to to the post author.
+   - The actual post info is (thankfully) provided by Reddit and its (generous) API.
+ - Fully transparent and open source
+   - The website, not the subreddit
 
 ##Adding your themes
 To add your theme, simply post it to the [vitathemes subreddit](//reddit.com/r/vitathemes) as you would normally.
