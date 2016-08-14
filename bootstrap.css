@@ -3,6 +3,10 @@
     padding: 12px 24px;
 }
 
+a.navbar-brand {
+    background: transparent url("logo/logo_40.png") no-repeat scroll center center;
+}
+
 #infinite_scroll {
     color: #7B7B7B;
     background-color: #ECECEC;
