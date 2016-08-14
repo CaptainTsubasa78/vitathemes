@@ -21,6 +21,7 @@
 var VitaThemes = {
     cache: [],
     config: {
+        'target': 'r/vitathemes', //Read target to fetch info. Should also support multireddits (r/sub1+sub2)
         'page': {
             running: false, //Probably bad way to do this. Tracking if we're currently processing the page load.
             buffer: 150,    //Amount of pixels within range of the bottom of the screen to load the next page.
@@ -95,7 +96,7 @@ var VitaThemes = {
                     temp = info.selftext.match(/\[preview\]\((.+?)\)/im).pop();
 
                 //If imgur, sanitize the URL and proceed. Otherwise set to false.
-                preview = (imgur.test(temp)) ? temp.replace(/https?:/, "") : false;
+                preview = (imgur.test(temp)) ? temp : false;
             };
             if (!preview) { preview = (info.preview && info.preview.images[0].source.url || false); }
 
@@ -103,7 +104,9 @@ var VitaThemes = {
                 console.log('No preview.', info); //Log problematic items.
                 return false;
             }
-
+            
+            if (location.protocol !== 'file:')
+                preview = preview.replace(/https?:/, ""); //Remove instances of http: and https: to inherit protocol.
             var download = (info.selftext && /\[download\]\((.+?)\)/im.test(info.selftext)) ? info.selftext.match(/\[download\]\((.+?)\)/im).pop() : false;
 
             var info = {
@@ -147,7 +150,7 @@ var VitaThemes = {
                 pagination = "after=" + (VitaThemes.config.page.after || "") + "&limit=" + VitaThemes.config.page.size,
                 out = (search.length > 0) ? "search.json?restrict_sr=on&"+scope+"&"+pagination+"&q="+search : ".json?"+scope+"&"+pagination;
 
-            $.getJSON("https://www.reddit.com/r/vitathemes/"+out, function(data) {
+            $.getJSON("https://www.reddit.com/"+VitaThemes.config.target+"/"+out, function(data) {
                 var after = data.data.after,
                     before = data.data.before;
                 //console.log(after, before, data);
