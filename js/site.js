@@ -78,7 +78,7 @@ var VitaThemes = {
            if(that.config.page.running == false && $(window).scrollTop() + $(window).height() >= $(document).height() - that.config.page.buffer) {
                console.log('bottom');
                that.config.page.running = true; //Prevent spamming.
-               that.fetch.reddit(); //Do thing.
+               that.fetch.reddit(false, true); //Do thing. No callback (false), noSave (true).
            }
         });
     },
@@ -158,7 +158,7 @@ var VitaThemes = {
             if (temp !== false)
                 VitaThemes.cache.push(temp);
         },
-        reddit: function(callback) {
+        reddit: function(callback, noSave) {
             var that = this;
 
             if (VitaThemes.config.page.after == null) { //If this is null, we've hit the end of the results.
@@ -175,7 +175,7 @@ var VitaThemes = {
                 pagination = "after=" + (VitaThemes.config.page.after || "") + "&limit=" + VitaThemes.config.page.size,
                 out = (search.length > 0) ? "search.json?restrict_sr=on&"+scope+"&"+pagination+"&q="+search : ".json?"+scope+"&"+pagination;
 
-            VitaThemes.saveConfig(t, sort, search); //Store search options in URL hash.
+            if (!noSave) VitaThemes.saveConfig(t, sort, search); //Store search options in URL hash.
 
             $.getJSON("https://www.reddit.com/"+VitaThemes.config.target+"/"+out, function(data) {
                 var after = data.data.after,
