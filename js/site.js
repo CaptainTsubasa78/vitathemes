@@ -83,6 +83,8 @@ var VitaThemes = {
             console.log("bottom / scrollin' scrollin' scrollin'");
             this.config.page.running = true; //Prevent spamming.
             this.fetch.reddit(false, true); //Do thing. No callback (false), noSave (true).
+            $("#infinite_scroll #pending").show();
+            $("#infinite_scroll #chickens").hide();
         }
     },
     canScroll: function() {
@@ -201,6 +203,8 @@ var VitaThemes = {
                 VitaThemes.config.page.after = data.data.after; //Store for pagination.
 
                 VitaThemes.config.page.running = false;
+                $("#infinite_scroll #pending").hide();
+                $("#infinite_scroll #chickens").show();
                 (callback || VitaThemes.run());
             });
         }
