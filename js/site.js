@@ -29,9 +29,27 @@ var VitaThemes = {
             after: "",      //Current page.
         }
     },
+    saveConfig: function(time, sort, search) {
+        //Store search options in URL hash. Array and join?
+        window.location.hash = (time && sort && search) ? ["!"+VitaThemes.config.target, time, sort, search].join("/") : '';
+    },
+    loadConfig: function() {
+        //Load initial search options based on URL hash. Currently unoptimized and prone to huge failure!
+        var temp = window.location.hash.split('/'); // ["#!r", subreddit(s), time, sort, search]
+
+        if (temp.length !== 5) return false;
+
+        this.config.target = temp[1];
+        $("select#t").find("[value^="+temp[2]+"]").attr("selected", "selected");
+        $("select#sort").find("[value^="+temp[3]+"]").attr("selected", "selected");
+        $("#search").val(temp[4]);
+    },
     init: function() {
         console.log("init called, it's a miracle");
+
+        this.loadConfig();
         this.bind();
+
         this.fetch.reddit();
     },
     bind: function() {
@@ -103,13 +121,13 @@ var VitaThemes = {
                 console.log('No preview.', info); //Log problematic items.
                 return false;
             }
-            
+
             //Check if request
             if (/\[request\]/i.test(info.title)) {
                 console.log('Request detected.', info);
                 return false;
             }
-            
+
             if (location.protocol !== 'file:')
                 preview = preview.replace(/https?:/, ""); //Remove instances of http: and https: to inherit protocol.
             var download = (info.selftext && /\[download\]\((.+?)\)/im.test(info.selftext)) ? info.selftext.match(/\[download\]\((.+?)\)/im).pop() : false;
@@ -154,6 +172,8 @@ var VitaThemes = {
                 scope = "sort="+sort+"&t="+t,
                 pagination = "after=" + (VitaThemes.config.page.after || "") + "&limit=" + VitaThemes.config.page.size,
                 out = (search.length > 0) ? "search.json?restrict_sr=on&"+scope+"&"+pagination+"&q="+search : ".json?"+scope+"&"+pagination;
+
+            VitaThemes.saveConfig(t, sort, search); //Store search options in URL hash.
 
             $.getJSON("https://www.reddit.com/"+VitaThemes.config.target+"/"+out, function(data) {
                 var after = data.data.after,
