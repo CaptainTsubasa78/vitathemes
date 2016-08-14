@@ -99,9 +99,14 @@ var VitaThemes = {
                 preview = (imgur.test(temp)) ? temp : false;
             };
             if (!preview) { preview = (info.preview && info.preview.images[0].source.url || false); }
-
             if (!preview) {
                 console.log('No preview.', info); //Log problematic items.
+                return false;
+            }
+            
+            //Check if request
+            if (/\[request\]/i.test(info.title)) {
+                console.log('Request detected.', info);
                 return false;
             }
             
