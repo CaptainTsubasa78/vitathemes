@@ -4,7 +4,11 @@
 }
 
 #infinite_scroll {
-    display: none;
+    color: #7B7B7B;
+    background-color: #ECECEC;
+    font-size:x-small;
+    text-align:center;
+    padding:5px;
 }
 
 #content {
