@@ -28,6 +28,10 @@ To ensure compatability with self/text posts please include the following syntax
 These are not case-sensitive and can be placed anywhere in the post.    
 *However*, the built-in parser will only use the *last* occurance of each.
 
+While I have no say in what is allowed on the subreddit, it should go without saying (but just in case), this site also respects icon packs. Basically any post that meets the above criteria and is posted to the subreddit will appear on the site.
+
+Based on the evolution of the subreddit and feedback, support for either different subreddits or multireddits may be added.
+
 ##Removing your themes
 At the time of writing, there's no way to selectively remove themes without deleting the post or intentionally failing the parser check (by not having a preview image).
 
