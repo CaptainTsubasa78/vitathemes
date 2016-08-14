@@ -49,6 +49,20 @@
     /*color:#2185f4;*/
 }
 
+.quicklinks .discuss {
+    position:relative;
+}
+
+.discuss .comments {
+    position: absolute;
+    left: 0px;
+    top: 6px;
+    font-size: x-small;
+    color: #fff;
+    width: 83%;
+    text-align: center;
+}
+
 .quicklinks .stats {
     float:left;
     text-align:left;

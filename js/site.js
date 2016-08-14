@@ -52,7 +52,7 @@ var VitaThemes = {
         $("#search").keyup(function(e){
             if(e.keyCode == 13) { that.search(); }
         });
-        
+
         $(document).on('click', '.author', function() {
             $("#search").val("author:"+$(this).text());
             that.search();
@@ -95,12 +95,12 @@ var VitaThemes = {
             */
 
             var preview;
-            
+
             //Check if the provided preview link is imgur.
             if (info.selftext && /\[preview\]\((.+?)\)/im.test(info.selftext)) {
                 var imgur = /^(?:https?:\/\/)?(?:(?:i|www)\.)?imgur\.com\/(?!gallery)([a-z0-9]{3,})/i, //Overkill.
                     temp = info.selftext.match(/\[preview\]\((.+?)\)/im).pop();
-                
+
                 //If imgur, sanitize the URL and proceed. Otherwise set to false.
                 preview = (imgur.test(temp)) ? temp.replace(/https?:/, "") : false;
             };
@@ -195,7 +195,11 @@ var VitaThemes = {
             if (info.downloadUrl !== false) {
                 $("<a />", {href: info.downloadUrl, target: '_blank'}).append($("<i />", {class:fa_global+'fa-download'})).appendTo(quicklinks);
             }
-            $("<a />", {href: info.url, target: '_blank'}).append($("<i />", {class:fa_global+'fa-comments'})).appendTo(quicklinks);
+
+            var discuss = $("<a />", {class: 'discuss', href: info.url, target: '_blank', title: 'Discussion'})
+            $("<div />", {class: 'comments', text: (info.stats.comments > 99) ? '99+' : info.stats.comments}).appendTo(discuss);
+            $("<i />", {class: fa_global+'fa-comments'}).appendTo(discuss);
+            discuss.appendTo(quicklinks);
 
             //Stats
             var icon = $("<i />", {class:fa_global+'fa-bar-chart'})[0].outerHTML,
@@ -203,10 +207,10 @@ var VitaThemes = {
                 icon_author = $("<span />", {class: fa_global+'fa-pencil'})[0].outerHTML,
                 up = $("<span />", {class: 'up boats', title: 'Upvotes', text: +info.stats.votes.up})[0].outerHTML,
                 down = $("<span />", {class: 'down boats', title: 'Downvotes', text: info.stats.votes.down})[0].outerHTML,
-                comments = $("<span />", {class: 'comments', title: 'Comments', html: info.stats.comments})[0].outerHTML,
+
                 author = $("<span />", {class: 'author', title: 'Search by author', html: icon_author + info.author})[0].outerHTML;
 
-            $("<div />", {class: 'stats', html: icon + " " + up + " / " + down + " / " + comments + "<br>" + author}).appendTo(quicklinks);
+            $("<div />", {class: 'stats', html: icon + " " + up + " / " + down + "<br>" + author}).appendTo(quicklinks);
 
             return quicklinks;
         }
