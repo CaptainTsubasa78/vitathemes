@@ -3,6 +3,10 @@
     padding: 12px 24px;
 }
 
+#infinite_scroll {
+    display: none;
+}
+
 #content {
     margin-top:55px;
     text-align:center;

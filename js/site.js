@@ -51,8 +51,8 @@ var VitaThemes = {
 
         this.loadConfig();
         this.bind();
-
-        this.fetch.reddit();
+        
+        this.doScroll();
     },
     bind: function() {
         var that = this;
@@ -75,12 +75,22 @@ var VitaThemes = {
         //Scrolling
         $(window).scroll(function() {
            //Eventually add thumbnail lazy loading.
-           if(that.config.page.running == false && $(window).scrollTop() + $(window).height() >= $(document).height() - that.config.page.buffer) {
-               console.log('bottom');
-               that.config.page.running = true; //Prevent spamming.
-               that.fetch.reddit(false, true); //Do thing. No callback (false), noSave (true).
-           }
+           that.doScroll();
         });
+    },
+    doScroll: function(skip) {
+        if (VitaThemes.config.page.after !== null && this.canScroll()) {
+            console.log("bottom / scrollin' scrollin' scrollin'");
+            this.config.page.running = true; //Prevent spamming.
+            this.fetch.reddit(false, true); //Do thing. No callback (false), noSave (true).
+        }
+    },
+    canScroll: function() {
+        var buffer = $(document).height() - this.config.page.buffer
+            bar = $("#infinite_scroll").offset().top,
+            max = $(window).scrollTop() + $(window).height();
+            
+        return (!this.config.page.running && (bar <= max) /*|| (max >= buffer)*/);
     },
     search: function() {
         //Empty cache, clear page, reset pagination.
@@ -91,13 +101,15 @@ var VitaThemes = {
 
         this.fetch.reddit();
     },
-    run: function(empty) {
+    run: function() {
         var that = this,
             start = ($(".item") && $(".item").last().index() + 1 || 0);
 
         $.each(this.cache.slice(start), function(index, value) {
             $('#items').append(that.generate.item(value));
         });
+        
+        this.doScroll();
     },
     fetch: {
         parse: function(info) {
@@ -120,13 +132,13 @@ var VitaThemes = {
             };
             if (!preview) { preview = (info.preview && info.preview.images[0].source.url || false); }
             if (!preview && VitaThemes.config.ignoreInvalid == true) {
-                console.log('No preview.', info); //Log problematic items.
+                console.warn('No preview.', info); //Log problematic items.
                 return false;
             }
 
             //Check if request
             if (/^\[?request/i.test(info.title)) {
-                console.log('Request detected.', info);
+                console.warn('Request detected.', info);
                 return false;
             }
 
