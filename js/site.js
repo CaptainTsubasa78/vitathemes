@@ -137,7 +137,7 @@ var VitaThemes = {
             var info = {
                 'name': info.title.replace(/\[(Theme|Release)\]/ig, ""),
                 'author': info.author,
-                'url': "//reddit.com/"+info.permalink,
+                'url': "//reddit.com"+info.permalink,
                 'downloadUrl': download,
                 'previewUrl': preview,
                 'nsfw': info.over_18,
