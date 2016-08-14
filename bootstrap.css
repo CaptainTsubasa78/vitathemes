@@ -1,3 +1,8 @@
+.jumbotron {
+    text-align: left;
+    padding: 12px 24px;
+}
+
 #content {
     margin-top:55px;
     text-align:center;
