@@ -2,6 +2,12 @@
 
 This is a front-end driven website powered by the Reddit API and the [vitathemes subreddit](//reddit.com/r/vitathemes) as the backend.
 
+##Features
+ - 1:1 mirroring of the subreddit (barring ignored posts)
+ - NSFW support (if/when used on the subreddit)
+ - Mobile friendly
+ - Full support of Reddit search, including advanced syntax
+
 ##Adding your themes
 To add your theme, simply post it to the [vitathemes subreddit](//reddit.com/r/vitathemes) as you would normally.
 
@@ -17,9 +23,9 @@ These are not case-sensitive and can be placed anywhere in the post.
 *However*, the built-in parser will only use the *last* occurance of each.
 
 ##Removing your themes
-At the time of writing, there's no way to selectively remove themes (aside from deletion) other than failing the parser check (by not having a preview image).
+At the time of writing, there's no way to selectively remove themes without deleting the post or intentionally failing the parser check (by not having a preview image).
 
-If there is demand for it, a solution will be provided.
+If there is demand for it, a proper solution will be provided.
 
 ##Site moderation and legal matters
 None of the content shown on the site is actually *hosted* on the site (or GitHub, to the extent of this project).
