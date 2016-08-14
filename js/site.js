@@ -21,6 +21,7 @@
 var VitaThemes = {
     cache: [],
     config: {
+        'ignoreInvalid': true,
         'target': 'r/vitathemes', //Read target to fetch info. Should also support multireddits (r/sub1+sub2)
         'page': {
             running: false, //Probably bad way to do this. Tracking if we're currently processing the page load.
@@ -118,13 +119,13 @@ var VitaThemes = {
                 preview = (imgur.test(temp)) ? temp : false;
             };
             if (!preview) { preview = (info.preview && info.preview.images[0].source.url || false); }
-            if (!preview) {
+            if (!preview && VitaThemes.config.ignoreInvalid == true) {
                 console.log('No preview.', info); //Log problematic items.
                 return false;
             }
 
             //Check if request
-            if (/\[request\]/i.test(info.title)) {
+            if (/^\[?request/i.test(info.title)) {
                 console.log('Request detected.', info);
                 return false;
             }
