@@ -7,6 +7,7 @@ This is a front-end driven website powered by the Reddit API and the [vitathemes
  - NSFW support (if/when used on the subreddit)
  - Mobile friendly
  - Full support of Reddit search, including advanced syntax
+ - Ability to use custom subreddit or multireddits (r/sub1+sub2+...) (see below for details)
  - No donations for server funding
    - The website is (thankfully) hosted by GitHub.
    - The file hosting is up to to the post author.
@@ -36,6 +37,18 @@ Based on the evolution of the subreddit and feedback, support for either differe
 At the time of writing, there's no way to selectively remove themes without deleting the post or intentionally failing the parser check (by not having a preview image).
 
 If there is demand for it, a proper solution will be provided.
+
+##Custom subreddits
+When a search is executed, the search options are saved into the URL.
+
+One of the options stored is the subreddit. Changing this to point where desired then opening the URL in a new tab will use that new subreddit as the target for that session/instance.
+
+Example:
+ - `https://repod.github.io/vitathemes/#!r/vitathemes/all/top/cool`
+ - `https://repod.github.io/vitathemes/#!r/myvitathemes/all/top/cool`
+  - Changed from `r/vitathemes` to `r/myvitathemes`, the entire site will now use `r/myvitathemes`.
+ - `https://repod.github.io/vitathemes/#!r/vitathemes+myvitathemes/all/top/cool`
+  - Changed to a multi: `r/vitathemes+myvitathemes`, note the `+`. The entire site will now use both subreddits.
 
 ##Site moderation and legal matters
 None of the content shown on the site is actually *hosted* on the site (or GitHub, to the extent of this project).
