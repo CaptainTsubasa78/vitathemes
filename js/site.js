@@ -31,18 +31,18 @@ var VitaThemes = {
     },
     saveConfig: function(time, sort, search) {
         //Store search options in URL hash. Array and join?
-        window.location.hash = (time && sort && search) ? ["!"+VitaThemes.config.target, time, sort, search].join("/") : '';
+        window.location.hash = (time && sort && search) ? [VitaThemes.config.target, time, sort, search].join("/") : '';
     },
     loadConfig: function() {
         //Load initial search options based on URL hash. Currently unoptimized and prone to huge failure!
-        var temp = window.location.hash.split('/'); // ["#!r", subreddit(s), time, sort, search]
+        var temp = window.location.hash.split('/'); // ["#r", subreddit(s), time, sort, search]
 
-        if (temp.length !== 5) return false;
+        if (temp.length < 2) return false;
 
         this.config.target = "r/"+temp[1]; //Life is simply unfair.
-        $("select#t").find("[value^="+temp[2]+"]").attr("selected", "selected");
-        $("select#sort").find("[value^="+temp[3]+"]").attr("selected", "selected");
-        $("#search").val(decodeURIComponent(temp[4]));
+        if (temp[2]) $("select#t").find("[value^="+temp[2]+"]").attr("selected", "selected");
+        if (temp[3]) $("select#sort").find("[value^="+temp[3]+"]").attr("selected", "selected");
+        if (temp[4]) $("#search").val(decodeURIComponent(temp[4]));
     },
     init: function() {
         console.log("init called, it's a miracle");
