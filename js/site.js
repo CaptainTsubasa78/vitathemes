@@ -137,8 +137,8 @@ var VitaThemes = {
             }
 
             //Check if request
-            if (/^\[?request/i.test(info.title)) {
-                console.warn('Request detected.', info);
+            if (/(^\[?request|tutorial)/i.test(info.title)) {
+                console.warn('Potentially irrelevant post detected. (based on title)', info);
                 return false;
             }
 
@@ -149,7 +149,8 @@ var VitaThemes = {
             var info = {
                 'name': info.title.replace(/\[(Theme|Release)\]/ig, ""),
                 'author': info.author,
-                'url': "//reddit.com"+info.permalink,
+                'url': info.url, //Whatever the post may link to (otherwise, to the thread)
+                'permalink': "//reddit.com"+info.permalink, //Permalink to the thread
                 'downloadUrl': download,
                 'previewUrl': preview,
                 'nsfw': info.over_18,
@@ -216,7 +217,9 @@ var VitaThemes = {
             var item = $("<div />", {class: 'item'});
 
             //Populate
-            $("<img />", {class: 'preview ' + ((info.nsfw)?'nsfw':''), src: info.previewUrl}).appendTo(item); //Append the preview image.
+            $("<a />", {href: info.url, target: '_blank'}).append(
+                $("<img />", {class: 'preview ' + ((info.nsfw)?'nsfw':''), src: info.previewUrl}) //Append the preview image.
+            ).appendTo(item);
             $("<div />", {class: 'name', text: info.name}).appendTo(item); //Append the name.
             this.quicklinks(info).appendTo(item); //Append quicklinks.
 
@@ -234,7 +237,7 @@ var VitaThemes = {
                 $("<a />", {href: info.downloadUrl, target: '_blank'}).append($("<i />", {class:fa_global+'fa-download'})).appendTo(quicklinks);
             }
 
-            var discuss = $("<a />", {class: 'discuss', href: info.url, target: '_blank', title: 'Discussion'})
+            var discuss = $("<a />", {class: 'discuss', href: info.permalink, target: '_blank', title: 'Discussion'})
             $("<div />", {class: 'comments', text: (info.stats.comments > 99) ? '99+' : info.stats.comments}).appendTo(discuss);
             $("<i />", {class: fa_global+'fa-comments'}).appendTo(discuss);
             discuss.appendTo(quicklinks);
