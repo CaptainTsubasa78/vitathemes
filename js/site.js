@@ -32,7 +32,7 @@ var VitaThemes = {
     },
     saveConfig: function(time, sort, search) {
         //Store search options in URL hash. Array and join?
-        window.location.hash = (time && sort && search) ? [VitaThemes.config.target, time, sort, search].join("/") : (this.config.target !== 'r/vitathemes') ? this.config.target : '';
+        window.location.hash = (time && sort && search) ? [VitaThemes.config.target, time, sort, search].join("/") : (this.config.target !== 'r/vitathemes+vitahacks') ? this.config.target : '';
     },
     loadConfig: function() {
         //Load initial search options based on URL hash. Currently unoptimized and prone to huge failure!
