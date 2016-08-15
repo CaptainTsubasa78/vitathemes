@@ -73,10 +73,8 @@ var VitaThemes = {
         });
 
         //Scrolling
-        $(window).scroll(function() {
-           //Eventually add thumbnail lazy loading.
-           that.doScroll();
-        });
+        $(window).scroll(function() { that.doScroll(); });
+        $("#infinite_scroll").click(function() { that.doScroll(); });
     },
     doScroll: function(skip) {
         if (VitaThemes.config.page.after !== null && this.canScroll()) {
@@ -120,21 +118,8 @@ var VitaThemes = {
                 Currently doesn't care about what's at the other end of the URL. The policing should be done via the subreddit.
             */
 
-            var preview;
-
-            //Check if the provided preview link is imgur.
-            if (info.selftext && /\[preview\]\((.+?)\)/im.test(info.selftext)) {
-                var imgur = /^(?:https?:\/\/)?(?:(?:i|www)\.)?imgur\.com\/(?!gallery)([a-z0-9]{3,})/i, //Overkill.
-                    temp = info.selftext.match(/\[preview\]\((.+?)\)/im).pop();
-
-                //If imgur, sanitize the URL and proceed. Otherwise set to false.
-                preview = (imgur.test(temp)) ? temp : false;
-            };
-            if (!preview) { preview = (info.preview && info.preview.images[0].source.url || false); }
-            if (!preview && VitaThemes.config.ignoreInvalid == true) {
-                console.warn('No preview.', info); //Log problematic items.
-                return false;
-            }
+            var preview = this.detectUrl.preview(info);
+            if (!preview) return false;
 
             //Check title
             if (/(^\[?request|tutorial)/i.test(info.title) ||
@@ -144,16 +129,12 @@ var VitaThemes = {
                 return false;
             }
 
-            if (location.protocol !== 'file:')
-                preview = preview.replace(/https?:/, ""); //Remove instances of http: and https: to inherit protocol.
-            var download = (info.selftext && /\[download\]\((.+?)\)/im.test(info.selftext)) ? info.selftext.match(/\[download\]\((.+?)\)/im).pop() : false;
-
             var info = {
                 'name': info.title.replace(/\[(Theme|Release)\]/ig, ""),
                 'author': info.author,
                 'url': info.url, //Whatever the post may link to (otherwise, to the thread)
                 'permalink': "//reddit.com"+info.permalink, //Permalink to the thread
-                'downloadUrl': download,
+                'downloadUrl': this.detectUrl.download(info),
                 'previewUrl': preview,
                 'time': info.created_utc,
                 'nsfw': info.over_18,
@@ -169,7 +150,49 @@ var VitaThemes = {
 
             return info;
         },
-        process: function (info) {
+        detectUrl: {
+            preview: function(info) {
+                //Check if the provided preview link is imgur.
+                var preview = false;
+
+                if (info.selftext && /\[preview\]\((.+?)\)/im.test(info.selftext)) {
+                    var imgur = /^(?:https?:\/\/)?(?:(?:i|www)\.)?imgur\.com\/(?!gallery)([a-z0-9]{3,})/i, //Overkill.
+                        temp = info.selftext.match(/\[preview\]\((.+?)\)/im).pop();
+
+                    //If imgur, sanitize the URL and proceed. Otherwise set to false.
+                    preview = (imgur.test(temp)) ? temp : false;
+                };
+                if (!preview) { preview = (info.preview && info.preview.images[0].source.url || false); }
+                if (!preview && VitaThemes.config.ignoreInvalid == true) {
+                    console.warn('No preview.', info); //Log problematic items.
+                    return false;
+                }
+                if (location.protocol !== 'file:')
+                    preview = preview.replace(/https?:/, ""); //Remove instances of http: and https: to inherit protocol.
+
+                return preview;
+            },
+            download: function(info) {
+                //Check for download link
+                var download = false,
+                    search = [
+                    {t: 'selftext_html', regex: /(DL|Download):? *&lt;a href="(.+?)"/im},
+                    {t: 'selftext', regex: /\[download\]\((.+?)\)/im}
+                ];
+
+                $.each(search, function (i, search) {
+                    var target = info[search.t];
+
+                    if (target && search.regex.test(target)) {
+                        download = target.match(search.regex).pop();
+                        return true;
+                    }
+                });
+
+                return download;
+            }
+        },
+        process: function(info) {
             var temp = this.parse(info);
 
             if (temp !== false)

@@ -13,6 +13,7 @@ a.navbar-brand {
     font-size:x-small;
     text-align:center;
     padding:5px;
+    cursor: pointer;
 }
 
 #content {
@@ -63,6 +64,10 @@ a.navbar-brand {
 .item .quicklinks {
     text-align:right;
     font-size:2em;
+}
+
+.quicklinks .fa-download {
+    vertical-align: middle;
 }
 
 .quicklinks .fa:hover {
