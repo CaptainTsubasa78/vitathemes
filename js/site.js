@@ -22,7 +22,7 @@ var VitaThemes = {
     cache: [],
     config: {
         'ignoreInvalid': true,
-        'target': 'r/vitathemes', //Read target to fetch info. Should also support multireddits (r/sub1+sub2)
+        'target': 'r/vitathemes+vitahacks', //Read target to fetch info. Should also support multireddits (r/sub1+sub2)
         'page': {
             running: false, //Probably bad way to do this. Tracking if we're currently processing the page load.
             buffer: 150,    //Amount of pixels within range of the bottom of the screen to load the next page.
@@ -136,8 +136,10 @@ var VitaThemes = {
                 return false;
             }
 
-            //Check if request
-            if (/(^\[?request|tutorial)/i.test(info.title)) {
+            //Check title
+            if (/(^\[?request|tutorial)/i.test(info.title) ||
+                (info.subreddit == "vitahacks" && !/theme/i.test(info.title))
+            ) {
                 console.warn('Potentially irrelevant post detected. (based on title)', info);
                 return false;
             }
@@ -153,8 +155,10 @@ var VitaThemes = {
                 'permalink': "//reddit.com"+info.permalink, //Permalink to the thread
                 'downloadUrl': download,
                 'previewUrl': preview,
+                'time': info.created_utc,
                 'nsfw': info.over_18,
                 'stats': {
+                    'archived': info.archived,
                     'comments': info.num_comments,
                     'votes': {
                         'up': info.ups,
