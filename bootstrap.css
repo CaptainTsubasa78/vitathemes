@@ -86,7 +86,7 @@ a.navbar-brand:hover {
 .discuss .comments {
     position: absolute;
     left: 0px;
-    top: 6px;
+    top: 19%; /*6px;*/
     font-size: x-small;
     color: #fff;
     width: 83%;
