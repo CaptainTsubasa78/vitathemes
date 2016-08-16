@@ -26,7 +26,7 @@ var VitaThemes = {
         'page': {
             running: false, //Probably bad way to do this. Tracking if we're currently processing the page load.
             buffer: 150,    //Amount of pixels within range of the bottom of the screen to load the next page.
-            size: 20,       //Amount of results to cap at per page. Doesn't guarantee amount that will pass processing checks.
+            size: 25,       //Amount of results to cap at per page. Doesn't guarantee amount that will pass processing checks.
             after: "",      //Current page.
         }
     },
