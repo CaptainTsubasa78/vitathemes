@@ -6,6 +6,9 @@
 a.navbar-brand {
     background: transparent url("logo/logo2_40.png") no-repeat scroll center center;
 }
+a.navbar-brand:hover {
+    background-image: url("logo/logo2-alt_40.png");
+}
 
 #infinite_scroll {
     color: #7B7B7B;
