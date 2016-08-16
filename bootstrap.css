@@ -4,6 +4,8 @@
 }
 
 a.navbar-brand {
+    font-variant: small-caps;
+    font-weight: bold;
     background: transparent url("logo/logo2_40.png") no-repeat scroll center center;
 }
 a.navbar-brand:hover {
