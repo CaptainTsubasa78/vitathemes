@@ -41,7 +41,6 @@ var VitaThemes = {
         if (temp.length < 2) return false;
 
         this.config.target = "r/"+temp[1]; //Life is simply unfair.
-        $("#subreddit_link").attr({title: this.config.target, href: '//reddit.com/'+this.config.target});
         if (temp[2]) $("select#t").find("[value^="+temp[2]+"]").attr("selected", "selected");
         if (temp[3]) $("select#sort").find("[value^="+temp[3]+"]").attr("selected", "selected");
         if (temp[4]) $("#search").val(decodeURIComponent(temp[4]));
@@ -50,6 +49,7 @@ var VitaThemes = {
         console.log("init called, it's a miracle");
 
         this.loadConfig();
+        $("#subreddit_link").attr({title: this.config.target, href: '//reddit.com/'+this.config.target});
         this.bind();
 
         this.doScroll();
