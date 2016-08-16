@@ -261,7 +261,7 @@ var VitaThemes = {
 
 
             if (info.downloadUrl !== false) {
-                $("<a />", {href: info.downloadUrl, target: '_blank'}).append($("<i />", {class:fa_global+'fa-download'})).appendTo(quicklinks);
+                $("<a />", {href: info.downloadUrl, target: '_blank', title: 'Download'}).append($("<i />", {class:fa_global+'fa-download'})).appendTo(quicklinks);
             }
 
             var discuss = $("<a />", {class: 'discuss', href: info.permalink, target: '_blank', title: 'Discussion'})
