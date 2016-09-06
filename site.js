@@ -147,7 +147,7 @@ var VitaThemes = {
                         'down': info.downs
                     }
                 }
-            };
+            }
 
             return info;
         },
@@ -162,10 +162,11 @@ var VitaThemes = {
 
                     //If imgur, sanitize the URL and proceed. Otherwise set to false.
                     preview = (imgur.test(temp)) ? temp : false;
-                };
+                }
+
                 if (!preview) {
                     if (!info.preview || !info.preview.images[0]) {
-                        preview = false 
+                        preview = false;
                     } else {
                         //This disgusts me, but it works and should save a lot of bandwidth.
                         var base = info.preview.images[0];
@@ -182,10 +183,12 @@ var VitaThemes = {
                         preview = preview.replace(/&amp;/g,"&");
                     }
                 }
+
                 if (!preview && VitaThemes.config.ignoreInvalid == true) {
                     console.warn('No preview.', info); //Log problematic items.
                     return false;
                 }
+
                 if (location.protocol !== 'file:')
                     preview = preview.replace(/https?:/, ""); //Remove instances of http: and https: to inherit protocol.
 
