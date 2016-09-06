@@ -1,3 +1,5 @@
+/* VitaThemes, (c) RePod, https://github.com/RePod/vitathemes/blob/gh-pages/LICENSE */
+
 /*
     While I'm not trying to enforce how creators present their themes in self posts,
     I will require consistency for my own sanity.
