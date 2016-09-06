@@ -163,7 +163,25 @@ var VitaThemes = {
                     //If imgur, sanitize the URL and proceed. Otherwise set to false.
                     preview = (imgur.test(temp)) ? temp : false;
                 };
-                if (!preview) { preview = (info.preview && info.preview.images[0].source.url || false); }
+                if (!preview) {
+                    if (!info.preview || !info.preview.images[0]) {
+                        preview = false 
+                    } else {
+                        //This disgusts me, but it works and should save a lot of bandwidth.
+                        var base = info.preview.images[0];
+                        preview = (
+                                    (base.resolutions &&
+                                        (
+                                           base.resolutions[2] && base.resolutions[2].url
+                                        || base.resolutions[1] && base.resolutions[1].url
+                                        || base.resolutions[0] && base.resolutions[0].url
+                                        )
+                                    )
+                                    || base.source.url
+                                  );
+                        preview = preview.replace(/&amp;/g,"&");
+                    }
+                }
                 if (!preview && VitaThemes.config.ignoreInvalid == true) {
                     console.warn('No preview.', info); //Log problematic items.
                     return false;
