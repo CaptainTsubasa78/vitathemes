@@ -80,7 +80,6 @@ var VitaThemes = {
     },
     doScroll: function(skip) {
         if (VitaThemes.config.page.after !== null && this.canScroll()) {
-            console.log("bottom / scrollin' scrollin' scrollin'");
             this.config.page.running = true; //Prevent spamming.
             this.fetch.reddit(false, true); //Do thing. No callback (false), noSave (true).
         }
