@@ -198,7 +198,7 @@ var VitaThemes = {
                 //Check for download link
                 var download = false,
                     search = [
-                    {t: 'selftext_html', regex: /(DL|Download):? *&lt;a href="(.+?)"/im},
+                    {t: 'selftext_html', regex: /(DL|Download)(\slink)?:? *&lt;a href="(.+?)"/im},
                     {t: 'selftext', regex: /\[download\]\((.+?)\)/im}
                 ];
 
