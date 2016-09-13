@@ -1,6 +1,6 @@
 ##[VitaThemes](//repod.github.io/vitathemes)
 
-This is a front-end driven website powered by the Reddit API and the [vitathemes subreddit](//reddit.com/r/vitathemes) as the back-end.
+This is a front-end driven website powered by the Reddit API and the [vitathemes subreddit](//reddit.com/r/vitathemes) (by default) as the back-end.
 
 ##Features
  - 1:1 mirroring of the subreddit (barring ignored posts)
@@ -16,7 +16,8 @@ This is a front-end driven website powered by the Reddit API and the [vitathemes
    - The website, not the subreddit
 
 ##Adding your themes
-To add your theme, simply post it to the [vitathemes subreddit](//reddit.com/r/vitathemes) as you would normally.
+To add your theme, simply post it to the [vitathemes subreddit](//reddit.com/r/vitathemes) as you would normally.    
+In the case of a custom subreddit, post it there instead.
 
 To ensure compatability with self/text posts please include the following syntax:
 - `[Download](http://mysite.com/theme.zip)` (optional)
@@ -50,7 +51,7 @@ Example:
   - Changed from `r/vitathemes` to `r/myvitathemes`, the entire site will now use `r/myvitathemes`.
  - `https://repod.github.io/vitathemes/#r/vitathemes+myvitathemes`
   - This uses short-hand to only supply the subreddit, the rest of the URL is not needed except for the actual search.
-  - Changed to a multi: `r/vitathemes+myvitathemes`, note the `+`. The entire site will now use both subreddits.
+  - Changed to a multi: `r/vitathemes+myvitathemes`, note the `+`. The entire site will now use both (or more!) subreddits.
 
 ##Site moderation and legal matters
 None of the content obtained from the API shown on the site is actually *hosted* on the site (or GitHub, to the extent of this project). The Reddit API is accessed purely client-side, so any problematic material resulting from it is by the client's own request (including the default settings, therefore request) and they are responsible for it.
