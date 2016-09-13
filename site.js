@@ -58,7 +58,9 @@ var VitaThemes = {
     },
     bind: function() {
         var that = this;
-
+        $("#navbar .fa-envelope").click(function() {
+            alert('Please note this is for contacting the creator of the site, RePod37, and not for moderating or questions about content.\n\nPlease properly direct all non-site related questions to the proper moderators or posters.');
+        });
         //Searching
         $("#run_search").click(function(e) {
             e.preventDefault();
