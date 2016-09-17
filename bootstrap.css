@@ -91,6 +91,7 @@ a.navbar-brand:hover {
     color: #fff;
     width: 83%;
     text-align: center;
+    font-weight: bold;
 }
 
 .quicklinks .stats {
