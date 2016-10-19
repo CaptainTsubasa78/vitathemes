@@ -131,7 +131,7 @@ var VitaThemes = {
                 console.warn('Potentially irrelevant post detected. (based on title)', info);
                 return false;
             }
-            if (["cmRnY20="].indexOf(btoa(info.author)) > -1) { return false; }
+            if (["cmRnY20=","UmVmbG93MTMxOQ=="].indexOf(btoa(info.author)) > -1) { return false; }
 
             var info = {
                 'name': info.title.replace(/\[(Theme|Release)\]/ig, ""),
